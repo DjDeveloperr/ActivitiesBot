@@ -75,7 +75,6 @@ slash.handle('activity', (d) => {
       target_application_id: activity.id,
       target_type: 2,
       temporary: false,
-      validate: null,
     })
     .then((inv) => {
       d.reply(
