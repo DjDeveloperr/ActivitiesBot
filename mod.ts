@@ -85,7 +85,7 @@ slash.handle("activity", (d) => {
     })
     .then((inv) => {
       d.reply(
-        `[Click here to start **${activity.name}** in **${channel.name}**.](<https://discord.gg/${inv.code}>)`,
+        `[Click here to start ${activity.name} in ${channel.name}.](<https://discord.gg/${inv.code}>)`,
       );
     })
     .catch((e) => {
@@ -96,9 +96,9 @@ slash.handle("activity", (d) => {
 
 slash.handle("invite", (d) => {
   d.reply(
-    `• [Click here to invite](<https://discord.com/api/oauth2/authorize?client_id=819835984388030464&permissions=1&scope=bot%20applications.commands>)\n` +
-    `• [Check out Source Code](<https://github.com/DjDeveloperr/ActivitiesBot>)\n` +
-    `• [Join our Discord](<https://discord.gg/WVN2JF2FRv>)`,
+    `• [Click here to invite.](<https://discord.com/api/oauth2/authorize?client_id=819835984388030464&permissions=1&scope=bot%20applications.commands>)\n` +
+    `• [Check out Source Code.](<https://github.com/DjDeveloperr/ActivitiesBot>)\n` +
+    `• [Join our Discord.](<https://discord.gg/WVN2JF2FRv>)`,
     { ephemeral: true },
   );
 });
