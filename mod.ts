@@ -1,6 +1,7 @@
-import * as slash from 'https://raw.githubusercontent.com/DjDeveloperr/harmony/slash/deploy.ts';
-import { ChannelTypes } from 'https://raw.githubusercontent.com/DjDeveloperr/harmony/slash/src/types/channel.ts';
+import * as slash from "https://raw.githubusercontent.com/DjDeveloperr/harmony/slash/deploy.ts";
+import { ChannelTypes } from "https://raw.githubusercontent.com/DjDeveloperr/harmony/slash/src/types/channel.ts";
 
+// Pick up TOKEN and PUBLIC_KEY from ENV.
 slash.init({ env: true });
 
 const ACTIVITIES: {
@@ -27,8 +28,9 @@ const ACTIVITIES: {
   },
 };
 
-slash.commands.all().then(e => {
-  if (e.size === 0) {
+// Create Slash Commands if not present
+slash.commands.all().then((e) => {
+  if (e.size !== 3) {
     slash.commands.bulkEdit([
       {
         name: "invite",
@@ -56,17 +58,18 @@ slash.commands.all().then(e => {
           },
         ],
       },
-    ])
+    ]);
   }
 });
 
-slash.handle('activity', (d) => {
+slash.handle("activity", (d) => {
   if (!d.guild) return;
   const channel = d.option<slash.InteractionChannel>("channel");
   const activity = ACTIVITIES[d.option<string>("activity")];
-  if (!channel || !activity) return d.reply("Invalid interaction.");
-  if (channel.type !== ChannelTypes.GUILD_VOICE)
-    return d.reply("Activities can only be started in Voice Channels.");
+  if (!channel || !activity) return d.reply("Invalid interaction.", { ephemeral: true });
+  if (channel.type !== ChannelTypes.GUILD_VOICE) {
+    return d.reply("Activities can only be started in Voice Channels.", { ephemeral: true });
+  }
 
   slash.client.rest.api.channels[channel.id].invites
     .post({
@@ -78,15 +81,18 @@ slash.handle('activity', (d) => {
     })
     .then((inv) => {
       d.reply(
-        `[Click here to start ${activity.name} in ${channel.name}.](<https://discord.gg/${inv.code}>)`
+        `[Click here to start **${activity.name}** in **${channel.name}**.](<https://discord.gg/${inv.code}>)`,
       );
     })
     .catch((e) => {
       console.log(e);
-      d.reply("Failed to start Activity.");
+      d.reply("Failed to start Activity.", { ephemeral: true });
     });
 });
 
-slash.handle('invite', (d) => {
-  d.reply(`[Click here to invite.](https://discord.com/api/oauth2/authorize?client_id=819835984388030464&permissions=1&scope=bot%20applications.commands)`);
+slash.handle("invite", (d) => {
+  d.reply(
+    `• [Click here to invite](https://discord.com/api/oauth2/authorize?client_id=819835984388030464&permissions=1&scope=bot%20applications.commands)\n• [Source Code](https://github.com/DjDeveloperr/ActivitiesBot)`,
+    { ephemeral: true }
+  );
 });
