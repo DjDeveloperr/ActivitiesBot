@@ -66,9 +66,13 @@ slash.handle("activity", (d) => {
   if (!d.guild) return;
   const channel = d.option<slash.InteractionChannel>("channel");
   const activity = ACTIVITIES[d.option<string>("activity")];
-  if (!channel || !activity) return d.reply("Invalid interaction.", { ephemeral: true });
+  if (!channel || !activity) {
+    return d.reply("Invalid interaction.", { ephemeral: true });
+  }
   if (channel.type !== ChannelTypes.GUILD_VOICE) {
-    return d.reply("Activities can only be started in Voice Channels.", { ephemeral: true });
+    return d.reply("Activities can only be started in Voice Channels.", {
+      ephemeral: true,
+    });
   }
 
   slash.client.rest.api.channels[channel.id].invites
@@ -92,7 +96,9 @@ slash.handle("activity", (d) => {
 
 slash.handle("invite", (d) => {
   d.reply(
-    `• [Click here to invite](<https://discord.com/api/oauth2/authorize?client_id=819835984388030464&permissions=1&scope=bot%20applications.commands>)\n• [Source Code](<https://github.com/DjDeveloperr/ActivitiesBot>)\n• [Join Discord](<https://discord.gg/WVN2JF2FRv>)`,
-    { ephemeral: true }
+    `• [Click here to invite](<https://discord.com/api/oauth2/authorize?client_id=819835984388030464&permissions=1&scope=bot%20applications.commands>)\n` +
+    `• [Check out Source Code](<https://github.com/DjDeveloperr/ActivitiesBot>)\n` +
+    `• [Join our Discord](<https://discord.gg/WVN2JF2FRv>)`,
+    { ephemeral: true },
   );
 });
