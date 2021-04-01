@@ -8,12 +8,7 @@ You can invite the bot [here](https://discord.com/api/oauth2/authorize?client_id
 
 ## Deployment
 
-This bot is deployed to [Deno Deploy](https://deno.com/deploy). If you want to deploy yourself, set the following ENV vars:
-
-- `PUBLIC_KEY`: Public Key present in Dashboard.
-- `TOKEN`: Bot account token.
-
-And deploy your project! Then set the URL of project in Discord Developers portal. That's all!
+This bot is deployed to [Deno Deploy](https://deno.com/deploy). [Click here to Deploy yourself.](https://dash.deno.com/new?url=https://github.com/DjDeveloperr/ActivitiesBot/blob/main/mod.ts&env=TOKEN,PUBLIC_KEY)
 
 ## Legal
 
