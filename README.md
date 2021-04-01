@@ -4,7 +4,7 @@ Discord Slash Commands bot to launch Voice Channel Activities. Made with [Harmon
 
 ## Invite
 
-You can invite the bot [here](). And you can join [Harmony Discord]() if you need any help!
+You can invite the bot [here](https://discord.com/api/oauth2/authorize?client_id=819835984388030464&permissions=1&scope=bot%20applications.commands). And you can join [Harmony Discord](https://discord.gg/WVN2JF2FRv) if you need any help!
 
 ## Deployment
 
