@@ -10,7 +10,15 @@ You can invite the bot [here](https://discord.com/api/oauth2/authorize?client_id
 
 This bot is deployed to [Deno Deploy](https://deno.com/deploy). If you want to deploy yourself, set the following ENV vars:
 
-- `PUBLIC_KEY`: Public Key present in Dashboard
-- `TOKEN`: Bot account token
+- `PUBLIC_KEY`: Public Key present in Dashboard.
+- `TOKEN`: Bot account token.
 
 And deploy your project! Then set the URL of project in Discord Developers portal. That's all!
+
+## Legal
+
+- Check [LICENSE](LICENSE) for more info.
+- Check Privacy Policy [here](Policy.md).
+
+
+Copyright 2021 @ DjDeveloperr
