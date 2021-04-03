@@ -8,7 +8,7 @@ You can invite the bot [here](https://discord.com/api/oauth2/authorize?client_id
 
 ## Deployment
 
-This bot is deployed to [Deno Deploy](https://deno.com/deploy). [Click here to Deploy yourself.](https://dash.deno.com/new?url=https://github.com/DjDeveloperr/ActivitiesBot/blob/main/mod.ts&env=TOKEN,PUBLIC_KEY)
+This bot is deployed to [Deno Deploy](https://deno.com/deploy). [Click here to Deploy yourself.](https://dash.deno.com/new?url=https://raw.githubusercontent.com/DjDeveloperr/ActivitiesBot/main/mod.ts&env=TOKEN,PUBLIC_KEY)
 
 ## Legal
 
