@@ -74,8 +74,6 @@ slash.handle("activity", (d) => {
     });
   }
 
-  console.log("Slash Command");
-
   slash.client.rest.api.channels[channel.id].invites
     .post({
       max_age: 604800,
@@ -105,3 +103,4 @@ slash.handle("invite", (d) => {
 });
 
 slash.handle("*", (d) => d.reply("Unhandled Command", { ephemeral: true }));
+slash.client.on("interactionError", console.log);
