@@ -63,7 +63,6 @@ slash.commands.all().then((e) => {
 
 slash.handle("activity", (d) => {
   if (!d.guild) return;
-  console.log("Slash Command");
   const channel = d.option<slash.InteractionChannel>("channel");
   const activity = ACTIVITIES[d.option<string>("activity")];
   if (!channel || !activity) {
@@ -74,6 +73,8 @@ slash.handle("activity", (d) => {
       ephemeral: true,
     });
   }
+
+  console.log("Slash Command");
 
   slash.client.rest.api.channels[channel.id].invites
     .post({
