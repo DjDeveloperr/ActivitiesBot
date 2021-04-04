@@ -1,4 +1,5 @@
-import * as slash from "https://raw.githubusercontent.com/DjDeveloperr/harmony/refactor/deploy.ts";
+import * as slash from "https://raw.githubusercontent.com/DjDeveloperr/harmony/slash/deploy.ts";
+import { ChannelTypes } from "https://raw.githubusercontent.com/DjDeveloperr/harmony/slash/src/types/channel.ts";
 
 // Pick up TOKEN and PUBLIC_KEY from ENV.
 slash.init({ env: true });
@@ -68,7 +69,7 @@ slash.handle("activity", (d) => {
   if (!channel || !activity) {
     return d.reply("Invalid interaction.", { ephemeral: true });
   }
-  if (channel.type !== slash.ChannelTypes.GUILD_VOICE) {
+  if (channel.type !== ChannelTypes.GUILD_VOICE) {
     return d.reply("Activities can only be started in Voice Channels.", {
       ephemeral: true,
     });
