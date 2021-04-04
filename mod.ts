@@ -88,7 +88,7 @@ slash.handle("activity", (d) => {
       );
     })
     .catch((e) => {
-      console.log(e);
+      console.log("Failed", e);
       d.reply("Failed to start Activity.", { ephemeral: true });
     });
 });
