@@ -102,3 +102,5 @@ slash.handle("invite", (d) => {
     { ephemeral: true }
   );
 });
+
+slash.handle("*", (d) => d.reply("Unhandled Command", { ephemeral: true }));
