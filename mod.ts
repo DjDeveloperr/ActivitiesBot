@@ -95,7 +95,7 @@ slash.handle("activity", (d) => {
 
 slash.handle("invite", (d) => {
   d.reply(
-    `• [Click here to invite.](<https://discord.com/api/oauth2/authorize?client_id=782529044856045568&permissions=1&scope=applications.commands%20bot>)\n` +
+    `• [Click here to invite.](<https://discord.com/api/oauth2/authorize?client_id=819835984388030464&permissions=1&scope=applications.commands%20bot>)\n` +
       `• [Check out Source Code.](<https://github.com/DjDeveloperr/ActivitiesBot>)\n` +
       `• [Join our Discord.](<https://discord.gg/WVN2JF2FRv>)`,
     { ephemeral: true }
