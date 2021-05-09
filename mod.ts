@@ -102,5 +102,7 @@ slash.handle("invite", (d) => {
   );
 });
 
+// Handle for any other commands received.
 slash.handle("*", (d) => d.reply("Unhandled Command", { ephemeral: true }));
+// Log all errors.
 slash.client.on("interactionError", console.log);
