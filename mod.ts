@@ -25,11 +25,15 @@ const ACTIVITIES: {
     id: "814288819477020702",
     name: "Fishington.io",
   },
+  chess: {
+    id: "832012586023256104",
+    name: "CG 2 Dev",
+  },
 };
 
 // Create Slash Commands if not present
 slash.commands.all().then((e) => {
-  if (e.size !== 2) {
+  if (e.size !== 2 || e.find(e => e.name === "activity")?.options.length !== Object.entries(ACTIVITIES).length) {
     slash.commands.bulkEdit([
       {
         name: "invite",
