@@ -33,7 +33,7 @@ const ACTIVITIES: {
 
 // Create Slash Commands if not present
 slash.commands.all().then((e) => {
-  if (e.size !== 3) {
+  if (e.size !== 2) {
     slash.commands.bulkEdit([
       {
         name: "invite",
