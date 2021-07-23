@@ -27,13 +27,19 @@ const ACTIVITIES: {
   },
   chess: {
     id: "832012586023256104",
-    name: "CG 2 Dev",
+    name: "Chess",
   },
 };
 
 // Create Slash Commands if not present
 slash.commands.all().then((e) => {
-  if (e.size !== 2) {
+  let cmd;
+  if (
+    e.size !== 2 || 
+    !(cmd = e.find(e => e.name === "activity")) 
+    || cmd?.options[1]?.choices?.length !== Object.keys(ACTIVITIES)
+    || cmd.options[1].choices.some(e => ACTIVITIES[e.value] !== e.name)
+  ) {
     slash.commands.bulkEdit([
       {
         name: "invite",
@@ -45,13 +51,13 @@ slash.commands.all().then((e) => {
         options: [
           {
             name: "channel",
-            type: slash.SlashCommandOptionType.CHANNEL,
+            type: "CHANNEL",
             description: "Voice Channel to start activity in.",
             required: true,
           },
           {
             name: "activity",
-            type: slash.SlashCommandOptionType.STRING,
+            type: "STRING",
             description: "Activity to start.",
             required: true,
             choices: Object.entries(ACTIVITIES).map((e) => ({
@@ -69,16 +75,27 @@ slash.handle("activity", (d) => {
   if (!d.guild) return;
   const channel = d.option<slash.InteractionChannel>("channel");
   const activity = ACTIVITIES[d.option<string>("activity")];
-  if (!channel || !activity) {
-    return d.reply("Invalid interaction.", { ephemeral: true });
-  }
+  if (!channel || !activity) return;
+  
   if (channel.type !== slash.ChannelTypes.GUILD_VOICE) {
-    return d.reply("Activities can only be started in Voice Channels.", {
+    return d.reply("Activities can only be started in Voice Channels!", {
       ephemeral: true,
     });
   }
 
-  slash.client.rest.api.channels[channel.id].invites
+  // POST /channels/{channel.id}/invites
+  // with target_type: 2,
+  // and target_appliation_id: app_id of activity
+  
+  // Wanna curl?
+  /* 
+     curl -X POST \
+       -H "Authorization: Bot $TOKEN" \
+       -H "Content-Type: application/json" \
+       https://discord.com/api/v9/channels/$CHANNEL_ID/invites \
+       -d "{ \"max_age\": 604800, \"max_uses\": 0, \"target_type\": 2, \"target_application_id\": \"$APP_ID\", \"temporary\": false }"
+  */
+  return slash.client.rest.api.channels[channel.id].invites
     .post({
       max_age: 604800,
       max_uses: 0,
@@ -87,26 +104,26 @@ slash.handle("activity", (d) => {
       temporary: false,
     })
     .then((inv) => {
-      d.reply(
+      return d.reply(
         `[Click here to start ${activity.name} in ${channel.name}.](<https://discord.gg/${inv.code}>)`
       );
     })
     .catch((e) => {
-      console.log("Failed", e);
-      d.reply("Failed to start Activity.", { ephemeral: true });
+      console.error("Starting Activity Failed", e);
+      return d.reply("Failed to start Activity.", { ephemeral: true });
     });
 });
 
 slash.handle("invite", (d) => {
-  d.reply(
+  return d.reply(
     `• [Click here to invite.](<https://discord.com/api/oauth2/authorize?client_id=819835984388030464&permissions=1&scope=applications.commands%20bot>)\n` +
       `• [Check out Source Code.](<https://github.com/DjDeveloperr/ActivitiesBot>)\n` +
-      `• [Join our Discord.](<https://discord.gg/WVN2JF2FRv>)`,
-    { ephemeral: true }
+      `• [Support me on Ko-fi.](<https://ko-fi.com/DjDeveloper>)\n`,
+    { ephemeral: true },
   );
 });
 
 // Handle for any other commands received.
 slash.handle("*", (d) => d.reply("Unhandled Command", { ephemeral: true }));
 // Log all errors.
-slash.client.on("interactionError", console.log);
+slash.client.on("interactionError", console.error);
