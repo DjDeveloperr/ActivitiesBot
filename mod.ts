@@ -31,43 +31,45 @@ const ACTIVITIES: {
   },
 };
 
+const commands = [
+   {
+     name: "invite",
+     description: "Invite me to your server.",
+   },
+   {
+     name: "activity",
+     description: "Start an Activity in a Voice Channel.",
+     options: [
+      {
+        name: "channel",
+        type: "CHANNEL",
+        description: "Voice Channel to start activity in.",
+        required: true,
+      },
+      {
+        name: "activity",
+        type: "STRING",
+        description: "Activity to start.",
+        required: true,
+        choices: Object.entries(ACTIVITIES).map((e) => ({
+          name: e[1].name,
+          value: e[0],
+        })),
+      },
+    ],
+  },
+];
+
 // Create Slash Commands if not present
 slash.commands.all().then((e) => {
   let cmd;
   if (
-    e.size !== 2 || 
+    e.size !== commands.length || 
     !(cmd = e.find(e => e.name === "activity")) 
     || cmd?.options[1]?.choices?.length !== Object.keys(ACTIVITIES)
     || cmd.options[1].choices.some(e => ACTIVITIES[e.value] !== e.name)
   ) {
-    slash.commands.bulkEdit([
-      {
-        name: "invite",
-        description: "Invite me to your server.",
-      },
-      {
-        name: "activity",
-        description: "Start an Activity in a Voice Channel.",
-        options: [
-          {
-            name: "channel",
-            type: "CHANNEL",
-            description: "Voice Channel to start activity in.",
-            required: true,
-          },
-          {
-            name: "activity",
-            type: "STRING",
-            description: "Activity to start.",
-            required: true,
-            choices: Object.entries(ACTIVITIES).map((e) => ({
-              name: e[1].name,
-              value: e[0],
-            })),
-          },
-        ],
-      },
-    ]);
+    slash.commands.bulkEdit(commands);
   }
 });
 
