@@ -1,4 +1,4 @@
-import * as slash from "https://raw.githubusercontent.com/harmonyland/harmony/main/deploy.ts";
+import * as slash from "https://code.harmony.rocks/v2.0.0";
 
 // Pick up TOKEN and PUBLIC_KEY from ENV.
 slash.init({ env: true });
