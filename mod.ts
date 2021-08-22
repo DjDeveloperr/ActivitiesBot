@@ -120,7 +120,7 @@ slash.handle("invite", (d) => {
   return d.reply(
     `• [Click here to invite.](<https://discord.com/api/oauth2/authorize?client_id=819835984388030464&permissions=1&scope=applications.commands%20bot>)\n` +
       `• [Check out Source Code.](<https://github.com/DjDeveloperr/ActivitiesBot>)\n` +
-      `• [Support me on Ko-fi.](<https://ko-fi.com/DjDeveloper>)\n`,
+      `• Originally made by [Advaith](https://github.com/advaith1) ([Activites Bot](https://github.com/advaith1/Activities)), this is a port to use Deno Deploy instead.`,
     { ephemeral: true },
   );
 });
