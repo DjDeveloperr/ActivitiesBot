@@ -26,8 +26,12 @@ const ACTIVITIES: {
     name: "Fishington.io",
   },
   chess: {
-    id: "832012586023256104",
-    name: "Chess",
+    id: "832012774040141894",
+    name: "Chess in the Park",
+  },
+  clickdis: {
+    id: "832012854282158180",
+    name: "Click Dis",
   },
 };
 
