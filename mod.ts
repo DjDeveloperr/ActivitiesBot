@@ -29,9 +29,21 @@ const ACTIVITIES: {
     id: "832012774040141894",
     name: "Chess in the Park",
   },
-  clickdis: {
-    id: "832012854282158180",
-    name: "Click Dis",
+  watchTogether: {
+    id: "880218394199220334",
+    name: "Watch Together",
+  },
+  doodleCrew: {
+    id: "878067389634314250",
+    name: "Doodle Crew",
+  },
+  letterTile: {
+    id: "879863686565621790",
+    name: "Letter Tile",
+  },
+  wordSnacks: {
+    id: "879863976006127627",
+    name: "Word Snacks",
   },
 };
 
